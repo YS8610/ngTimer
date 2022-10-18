@@ -12,9 +12,15 @@ export class AppComponent implements OnDestroy{
   timeInput = 60;
   time2 !: number;
   timeCounter : Subscription;
+  counterStored : {counter : string}={counter : "0"};
+  counterString = "intervalCounter";
 
   constructor(){
     this.timeCounter = Subscription.EMPTY;
+    if (localStorage.getItem(this.counterString)){
+      this.counterStored =  JSON.parse( <string>localStorage.getItem(this.counterString) )
+      this.counter = parseInt(this.counterStored.counter);
+    }
   }
 
   ngOnDestroy(): void {
@@ -48,11 +54,23 @@ export class AppComponent implements OnDestroy{
 
   addCounter(){
     this.counter++;
+    this.saveBikesInfo(this.counter);
   }
 
   minusCounter(){
     if (this.counter>0){
       this.counter--;
+      this.saveBikesInfo(this.counter);
     }
+  }
+
+  resetCounter(){
+    this.counter = 0;
+    this.saveBikesInfo(this.counter);
+  }
+
+  saveBikesInfo( counter: number ):void {
+    this.counterStored.counter = counter.toString();
+    localStorage.setItem( this.counterString, JSON.stringify(this.counterStored) );
   }
 }

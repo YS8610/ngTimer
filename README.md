@@ -1,6 +1,8 @@
 # NgTimer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.  
+Simple timer with counter for counting the number of repetition. Please Check out the website below  
+https://ys8610.github.io/ngTimer/
 
 ## Development server
 
